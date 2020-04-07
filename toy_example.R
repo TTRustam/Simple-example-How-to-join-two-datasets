@@ -36,7 +36,7 @@ tab_2_gr <- table2 %>%
 table1 %>% 
   left_join(tab_2_gr, by = c("country", "age" = "age_group")) %>% 
   mutate(data_3 = map2(deaths, data, ~ .x * 2 / 16 + pull(.y, deaths)), 
-         data = map(data, ~ .x %>% dplyr::select(new_age = age))) %>% 
+         data   = map(data,          ~ .x %>% dplyr::select(new_age = age))) %>% 
   dplyr::select(age, sex, country, data, data_3) %>% 
   unnest(cols = c(data, data_3))
 # -------------------------------------------------------------------- # 
